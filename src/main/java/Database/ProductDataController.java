@@ -3,14 +3,12 @@ package main.java.Database;
 import main.java.Model.Product;
 
 import javax.naming.NamingException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
 public class ProductDataController extends DatabaseOperation<Product>{
-    private static Connection connection = null;
     private static Statement statement = null;
 
     public ProductDataController() throws SQLException, NamingException {
@@ -24,6 +22,7 @@ public class ProductDataController extends DatabaseOperation<Product>{
     }
 
     public static ResultSet getProducts() throws SQLException {
+        assert statement != null;
         ResultSet resultSet = statement.executeQuery("SELECT productID, productName, productPrice FROM product;");
         return resultSet;
     }

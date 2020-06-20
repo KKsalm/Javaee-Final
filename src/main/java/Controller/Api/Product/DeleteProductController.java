@@ -15,29 +15,35 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class DeleteProductController extends HttpServlet {
-    private static final String[] DeleteProductMessage = {"Delete Successfully", "Without Permission"};
+    private static final String[] Message = {"Delete Successfully", "Without Permission"};
     private final Logger logger = LogManager.getLogger(DeleteProductController.class);
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("User");
+        User currentUser = (User) session.getAttribute("currentUser");
 
         Product product = new Product(Integer.parseInt(req.getParameter("productID")));
 
-        try {
-            if (user != null) {
-                if ("staff".equals(user.getPosition())) {
+        if (currentUser != null) {
+            try {
+                if ("staff".equals(currentUser.getPosition())) {
                     req.setAttribute("Code", 1);
-                    req.setAttribute("Message", DeleteProductMessage[1]);
+                    req.setAttribute("Message", Message[1]);
                 } else {
                     ProductDataController.deleteProduct(product);
+
                     req.setAttribute("Code", 0);
-                    req.setAttribute("Message", DeleteProductMessage[0]);
+                    req.setAttribute("Message", Message[0]);
                 }
+            } catch (SQLException sqlException) {
+                logger.error(sqlException.getMessage());
             }
-        } catch (SQLException sqlException) {
-            logger.error(sqlException.getMessage());
+
+        } else {
+            req.setAttribute("Code", 1);
+            req.setAttribute("Message", Message[1]);
         }
+
     }
 }

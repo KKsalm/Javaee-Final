@@ -17,8 +17,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class GetAllUserController extends HttpServlet {
-    private static final String[] GetUsersMessage = {"Get Users Successfully", "Without Permission"};
-    private final Logger logger = LogManager.getLogger(CreateProductController.class);
+    private static final String[] Message = {"Get Users Successfully", "Without Permission"};
+    private final Logger logger = LogManager.getLogger(GetAllUserController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,18 +28,16 @@ public class GetAllUserController extends HttpServlet {
         if (currentUser != null) {
             if ("staff".equals(currentUser.getPosition())) {
                 req.setAttribute("Code", 1);
-                req.setAttribute("Message", GetUsersMessage[1]);
+                req.setAttribute("Message", Message[1]);
             } else {
                 try {
                     List<User> users = null;
                     UserDataController userDataController = new UserDataController();
                     users = userDataController.queryAll();
 
-                    // System.out.println(users.get(0).toString());
-
                     req.setAttribute("UsersInfo", users);
                     req.setAttribute("Code", 0);
-                    req.setAttribute("Message", GetUsersMessage[0]);
+                    req.setAttribute("Message", Message[0]);
                 } catch (SQLException sqlException) {
                     logger.error(sqlException.getMessage());
                 } catch (InstantiationException e) {

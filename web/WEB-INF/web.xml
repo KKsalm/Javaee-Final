@@ -31,6 +31,8 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+
+    <!--    User Part-->
     <servlet>
         <servlet-name>GetUserInfo</servlet-name>
         <servlet-class>main.java.Controller.Api.User.GetSingleUserController</servlet-class>
@@ -67,6 +69,25 @@
         <url-pattern>/user/update</url-pattern>
     </servlet-mapping>
 
+    <!--    Product Part-->
+    <servlet>
+        <servlet-name>GetProductInfo</servlet-name>
+        <servlet-class>main.java.Controller.Api.Product.GetSingleProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetProductInfo</servlet-name>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetProductsInfo</servlet-name>
+        <servlet-class>main.java.Controller.Api.Product.GetAllProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetProductsInfo</servlet-name>
+        <url-pattern>/product/all</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>AddProduct</servlet-name>
         <servlet-class>main.java.Controller.Api.Product.CreateProductController</servlet-class>
@@ -75,4 +96,6 @@
         <servlet-name>AddProduct</servlet-name>
         <url-pattern>/product/add</url-pattern>
     </servlet-mapping>
+
+
 </web-app>

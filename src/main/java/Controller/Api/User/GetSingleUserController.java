@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class GetSingleUserController extends HttpServlet {
-    private static final String[] GetSingleUserMessage = {"Get User Info Successfully", "Without Permission"};
-    private final Logger logger = LogManager.getLogger(CreateProductController.class);
+    private static final String[] Message = {"Get User Info Successfully", "Without Permission"};
+    private final Logger logger = LogManager.getLogger(GetSingleUserController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class GetSingleUserController extends HttpServlet {
         if (currentUser != null) {
             if ("staff".equals(currentUser.getPosition())) {
                 req.setAttribute("Code", 1);
-                req.setAttribute("Message", GetSingleUserMessage[1]);
+                req.setAttribute("Message", Message[1]);
             } else {
                 try {
                     User user = null;
@@ -39,17 +39,17 @@ public class GetSingleUserController extends HttpServlet {
 
                     req.setAttribute("UserInfo", user);
                     req.setAttribute("Code", 0);
-                    req.setAttribute("Message", GetSingleUserMessage[0]);
+                    req.setAttribute("Message", Message[0]);
                 } catch (SQLException sqlException) {
                     logger.error(sqlException.getMessage());
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
+                } catch (InstantiationException instantiationException) {
+                    logger.error(instantiationException.getMessage());
                 } catch (NamingException namingException) {
-                    namingException.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                    logger.error(namingException.getMessage());
+                } catch (IllegalAccessException illegalAccessException) {
+                    logger.error(illegalAccessException.getMessage());
                 } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
+                    logger.error(classNotFoundException.getMessage());
                 }
             }
         }
