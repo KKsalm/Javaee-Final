@@ -2,43 +2,50 @@ package main.java.Database;
 
 import main.java.Model.User;
 
-import java.sql.Connection;
+import javax.naming.NamingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
-public class UserDataController {
-    private static Connection connection = null;
+public class UserDataController extends DatabaseOperation<User> {
     private static Statement statement = null;
 
-    public UserDataController() throws SQLException, ClassNotFoundException {
-        Class.forName(DatabaseController.getJdbcDRIVER());
-        connection = DatabaseController.getConnection();
-        statement = connection.createStatement();
+    public UserDataController() throws SQLException, ClassNotFoundException, NamingException {
+        super();
+        statement = super.getConnection().createStatement();
     }
 
-    public static void closeConnection() throws SQLException {
-        connection.close();
+    public String getPassword(User user) throws SQLException {
+        ResultSet resultSet = statement.executeQuery("SELECT password FROM user WHERE username = 'test';");
+        assert resultSet != null;
+        resultSet.next();
+        System.out.println(resultSet.getString("password"));
+        return resultSet.getString("password");
     }
 
-    public static ResultSet getAllUsers() throws SQLException {
-        return statement.executeQuery("SELECT workNumber, name, position, monthWorkTime, monthSalary FROM user");
+    @Override
+    public User queryByID(int id) throws SQLException, IllegalAccessException, InstantiationException {
+        return super.queryByID(id);
     }
 
-    public static void registerUser(User user) throws SQLException {
+    @Override
+    public List<User> queryAll() throws IllegalAccessException, InstantiationException, SQLException {
+        return super.queryAll();
+    }
+
+    public void registerUser(User user) throws SQLException {
         statement.executeUpdate("INSERT INTO user( username, password )\n" +
                 " VALUE ( '" + user.getUsername() + "', '" + user.getPassword() + "' );");
     }
 
-    public static String getPassword(User user) throws SQLException {
-        ResultSet resultSet = statement.executeQuery("SELECT password FROM user \n" +
-                "WHERE username = '" + user.getUsername() + "';");
-
-        if (resultSet != null) {
-            resultSet.next();
-        }
-
-        return resultSet.getString("password");
+    @Override
+    public void delete(int id) throws SQLException {
+        super.delete(id);
     }
 
+    @Override
+    public void update(User object) throws SQLException, IllegalAccessException {
+        super.update(object);
+    }
 }

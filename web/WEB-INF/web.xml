@@ -31,4 +31,13 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GetUsersInfo</servlet-name>
+        <servlet-class>main.java.Controller.Api.User.GetUsersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetUsersInfo</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -6,13 +6,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class User {
     protected int userId;               // 数据库自增字段
-    protected int workNumber;           // 员工工号
+    protected Integer workNumber;           // 员工工号
     protected String name;              // 员工姓名
     protected String position;          // 员工职位
-    protected int storeID;              // 店编号
+    protected Integer storeID;              // 店编号
     protected float monthWorkTime;      // 员工工作时间
     protected float monthSalary;        // 员工薪水
     protected String username;

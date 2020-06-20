@@ -23,37 +23,33 @@ public class GetUsersController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("User");
+//        HttpSession session = req.getSession();
+//        User user = (User) session.getAttribute("User");
+//
+//        if (user != null) {
+//            if ("staff".equals(user.getPosition())) {
+//                req.setAttribute("Code", 1);
+//                req.setAttribute("Message", GetUsersMessage[1]);
+//            } else {
+//                try {
+//                    List<User> users = new ArrayList<>();
+//
+//                    ResultSet resultSet = UserDataController.getAllUsers();
+//
+//                    while (resultSet.next()) {
+//                        User user1 = new User(resultSet.getInt("userID"), resultSet.getInt("workNumber"), resultSet.getString("name"),
+//                                resultSet.getString("position"), resultSet.getInt("storeID"), resultSet.getFloat("monthWorkTime"), resultSet.getFloat("monthWorkSalary"));
+//                        users.add(user1);
+//                    }
+//                    req.setAttribute("Users", users);
+//                    req.setAttribute("Code", 0);
+//                    req.setAttribute("Message", GetUsersMessage[0]);
+//                } catch (SQLException sqlException) {
+//                    logger.error(sqlException.getMessage());
+//                }
+//            }
+//        }
 
-        if (user != null) {
-            switch (user.getPosition()) {
-                case "staff":
-                    req.setAttribute("Code", 1);
-                    req.setAttribute("Message", GetUsersMessage[1]);
-                    break;
-                default:
-                    try {
-                        List<User> users = new ArrayList<>();
-
-                        ResultSet resultSet = UserDataController.getAllUsers();
-
-                        while (resultSet.next()) {
-                            User user1 = new User(resultSet.getInt("userID"), resultSet.getInt("workNumber"), resultSet.getString("name"),
-                                    resultSet.getString("position"), resultSet.getInt("storeID"), resultSet.getFloat("monthWorkTime"), resultSet.getFloat("monthWorkSalary"));
-                            users.add(user1);
-                        }
-                        req.setAttribute("Users", users);
-                        req.setAttribute("Code", 0);
-                        req.setAttribute("Message", GetUsersMessage[0]);
-                    } catch (SQLException sqlException) {
-                        logger.error(sqlException.getMessage());
-                    }
-                    break;
-
-            }
-        }
-
-        req.getRequestDispatcher("").forward(req, resp);
+        // req.getRequestDispatcher("").forward(req, resp);
     }
 }

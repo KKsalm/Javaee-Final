@@ -4,7 +4,9 @@ import main.java.Database.DatabaseController;
 import main.java.Model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
+import java.lang.reflect.Field;
 import java.sql.*;
 
 public class DatabaseControllerTest {
@@ -52,8 +54,13 @@ public class DatabaseControllerTest {
 
             connection = DriverManager.getConnection(dbURL + "/" + dbName + dbURLParams, dbUsername, dbPassword);
             statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO user( username, password )\n" +
-                    " VALUE ( '" + user.getUsername() + "', '" + user.getPassword() + "' );");
+            ResultSet resultSet = statement.executeQuery("SELECT password FROM user WHERE username = 'test';");
+
+
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("password"));
+            }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }

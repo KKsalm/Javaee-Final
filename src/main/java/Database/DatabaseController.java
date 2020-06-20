@@ -31,7 +31,7 @@ public class DatabaseController {
         logger.info("Create Statement Object ...");
         Statement statement = connection.createStatement();
 
-        if (connection != null && statement != null) {
+        if (statement != null) {
             createDatabase(connection, statement);
         }
 

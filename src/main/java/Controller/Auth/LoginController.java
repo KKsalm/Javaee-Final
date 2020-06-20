@@ -1,5 +1,6 @@
 package main.java.Controller.Auth;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -16,29 +17,43 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/login.jsp");
+        try {
+            UserDataController userDataController = new UserDataController();
+            User user = userDataController.queryByID(1);
+            System.out.println(user.getUsername());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        } catch (NamingException namingException) {
+            namingException.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+
+//        resp.sendRedirect("/login.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new User(req.getParameter("username"), req.getParameter("password"));
-
         HttpSession session = req.getSession();
 
         if (!user.getUsername().equals("") && !user.getPassword().equals("")) {
             try {
-
-                String queryResult = UserDataController.getPassword(user);
-                UserDataController.closeConnection();
+                UserDataController userDataController = new UserDataController();
+                String queryResult = userDataController.getPassword(user);
 
                 if (queryResult != null ) {
                     if (user.getPassword().equals(queryResult)) {
+                        resp.addCookie(new Cookie("username", user.getUsername()));
+                        resp.addCookie(new Cookie("password", user.getPassword()));
                         // Put User Object into Sessions
+                        session.setAttribute("User", user);
                         session.setAttribute("Code", 0);
                         session.setAttribute("Message",loginMessage[0]);
-//                    Cookie[] cookie = {new Cookie(user)}
-//                    resp.addCookie();
-                        session.setAttribute("User", user);
                     } else {
                         session.setAttribute("Code", 3);
                         session.setAttribute("Message",loginMessage[3]);
@@ -57,6 +72,10 @@ public class LoginController extends HttpServlet {
 
                 }
                 logger.fatal(sqlException.getMessage());
+            } catch (ClassNotFoundException classNotFoundException) {
+                classNotFoundException.printStackTrace();
+            } catch (NamingException namingException) {
+                namingException.printStackTrace();
             }
         } else {
             session.setAttribute("Code", 1);
