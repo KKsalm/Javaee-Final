@@ -1,11 +1,11 @@
 package main.java.Controller.Auth;
 
-import main.java.Database.DatabaseController;
 import main.java.Database.UserDataController;
 import main.java.Model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,33 +26,34 @@ public class RegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession session = req.getSession();
-//
-//        if (req.getParameter("username") != null && req.getParameter("password") != null) {
-//            User user = new User(req.getParameter("username"), req.getParameter("password"));
-//            System.out.println(req.getParameter("username") + " " + req.getParameter("password"));
-//
-//            try {
-//                UserDataController userDataController = new UserDataController();
-//                userDataController.registerUser(user);
-//                userDataController.closeConnection();
-//
-//                session.setAttribute("Code", 0);
-//                session.setAttribute("Message", RegisterMessage[0]);
-//            } catch (SQLException sqlException) {
-//                if (sqlException.getErrorCode() == 1062) {
-//                    // Username already exist;
-//                    session.setAttribute("Code", 1);
-//                    session.setAttribute("Message", RegisterMessage[1]);
-//                    // Other Operations
-//                    sqlException.printStackTrace();
-//                } else {
-//                    logger.fatal(sqlException.getMessage());
-//                }
-//            } catch (ClassNotFoundException classNotFoundException) {
-//                classNotFoundException.printStackTrace();
-//            }
-//        }
+        HttpSession session = req.getSession();
+
+        if (req.getParameter("username") != null && req.getParameter("password") != null) {
+            User user = new User(req.getParameter("username"), req.getParameter("password"));
+            System.out.println(req.getParameter("username") + " " + req.getParameter("password"));
+
+            try {
+                UserDataController userDataController = new UserDataController();
+                userDataController.registerUser(user);
+
+                session.setAttribute("Code", 0);
+                session.setAttribute("Message", RegisterMessage[0]);
+            } catch (SQLException sqlException) {
+                if (sqlException.getErrorCode() == 1062) {
+                    // Username already exist;
+                    session.setAttribute("Code", 1);
+                    session.setAttribute("Message", RegisterMessage[1]);
+                    // Other Operations
+                    sqlException.printStackTrace();
+                } else {
+                    logger.fatal(sqlException.getMessage());
+                }
+            } catch (ClassNotFoundException classNotFoundException) {
+                classNotFoundException.printStackTrace();
+            } catch (NamingException namingException) {
+                namingException.printStackTrace();
+            }
+        }
 
     }
 }

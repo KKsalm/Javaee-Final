@@ -66,13 +66,13 @@ public class DatabaseOperation<T> {
     }
 
     public List<T> queryAll() throws IllegalAccessException, InstantiationException, SQLException {
-        T object = (T) modelClass.newInstance();
         List<T> list = new ArrayList<T>();
         Field[] fields = modelClass.getDeclaredFields();
         assert connection != null && statement != null;
         String tableName = toLowercaseFirst(modelClass.getSimpleName());
         ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName + ";");
         while (resultSet.next()) {
+            T object = (T) modelClass.newInstance();
             for (Field field: fields) {
                 field.setAccessible(true);
                 field.set(object, resultSet.getObject(field.getName()));
@@ -83,7 +83,9 @@ public class DatabaseOperation<T> {
     }
 
     public void delete(int id) throws SQLException {
-        statement.executeUpdate("DELETE " + toLowercaseFirst(modelClass.getSimpleName()));
+        Field[] fields = modelClass.getDeclaredFields();
+        fields[0].setAccessible(true);
+        statement.executeUpdate("DELETE FROM " + toLowercaseFirst(modelClass.getSimpleName()) + " WHERE " + fields[0].getName() + " = " + id + ";");
     }
 
     public void add(T object) throws SQLException, IllegalAccessException {
@@ -123,19 +125,56 @@ public class DatabaseOperation<T> {
         for (int i = 1; i < fields.length; i++) {
             fields[i].setAccessible(true);
             sql.append(fields[i].getName());
-            sql.append(",");
+            sql.append("=?,");
         }
         sql = sql.deleteCharAt(sql.length() - 1);
         sql.append(" WHERE ").append(fields[0].getName()).append("=?");
         Object[] columns = new Object[fields.length];
-        for (int i = 1; i < fields.length; i++) {
+        for (int i = 0; i < fields.length; i++) {
             fields[i].setAccessible(true);
             columns[i] = fields[i].get(object);
+            if (isPrimitive(fields[i].getType())) {//check primitive type(Point 5)
+                Class<?> boxed = boxPrimitiveClass(fields[i].getType());//box if primitive(Point 6)
+                columns[i] = boxed.cast(columns[i]);
+            }
         }
+        System.out.println(sql.toString());
         PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());
         for (int i = 1; i < fields.length; i++) {
             preparedStatement.setObject(i, columns[i]);
         }
+        preparedStatement.setObject(fields.length, columns[0]);
+        // ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails
+        // (`yhtSaleSystem`.`user`, CONSTRAINT `STORE_FK` FOREIGN KEY (`storeID`) REFERENCES `store` (`storeID`))
         preparedStatement.executeUpdate();
+    }
+
+
+    public static boolean isPrimitive(Class<?> type) {
+        return (type == int.class || type == long.class || type == double.class || type == float.class
+                || type == boolean.class || type == byte.class || type == char.class || type == short.class);
+    }
+
+    public static Class<?> boxPrimitiveClass(Class<?> type) {
+        if (type == int.class) {
+            return Integer.class;
+        } else if (type == long.class) {
+            return Long.class;
+        } else if (type == double.class) {
+            return Double.class;
+        } else if (type == float.class) {
+            return Float.class;
+        } else if (type == boolean.class) {
+            return Boolean.class;
+        } else if (type == byte.class) {
+            return Byte.class;
+        } else if (type == char.class) {
+            return Character.class;
+        } else if (type == short.class) {
+            return Short.class;
+        } else {
+            String string = "class '" + type.getName() + "' is not a primitive";
+            throw new IllegalArgumentException(string);
+        }
     }
 }

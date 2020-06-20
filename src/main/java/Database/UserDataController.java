@@ -16,6 +16,11 @@ public class UserDataController extends DatabaseOperation<User> {
         statement = super.getConnection().createStatement();
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+    }
+
     public String getPassword(User user) throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT password FROM user WHERE username = 'test';");
         assert resultSet != null;

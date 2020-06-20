@@ -28,7 +28,7 @@ CREATE TABLE user
 CREATE TABLE product
 (
     productID        INT          NOT NULL AUTO_INCREMENT,
-    productName      VARCHAR(50)  NOT NULL,
+    productName      VARCHAR(50)  NOT NULL UNIQUE ,
     productPrice     FLOAT        NOT NULL,
     CONSTRAINT PRODUCT_PK PRIMARY KEY (productID)
 );

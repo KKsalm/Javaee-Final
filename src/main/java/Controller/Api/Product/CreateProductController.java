@@ -5,6 +5,7 @@ import main.java.Model.Product;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,8 @@ public class CreateProductController extends HttpServlet {
             Product product = new Product(req.getParameter("productName"), Integer.parseInt(req.getParameter("productPrice")));
 
             try {
-                ProductDataController.createProduct(product);
+                ProductDataController productDataController = new ProductDataController();
+                productDataController.add(product);
 
                 req.setAttribute("Code", 0);
                 req.setAttribute("Message", CreateProductMessage[0]);
@@ -35,6 +37,10 @@ public class CreateProductController extends HttpServlet {
                     req.setAttribute("Message", CreateProductMessage[2]);
                 }
                 logger.error(sqlException.getMessage());
+            } catch (NamingException namingException) {
+                logger.error(namingException.getMessage());
+            } catch (IllegalAccessException illegalAccessException) {
+                logger.error(illegalAccessException.getMessage());
             }
         } else {
             req.setAttribute("Code", 1);

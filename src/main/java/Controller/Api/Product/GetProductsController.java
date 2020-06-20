@@ -32,7 +32,7 @@ public class GetProductsController extends HttpServlet {
                 List<Product> products = new ArrayList<>();
 
                 ResultSet resultSet = ProductDataController.getProducts();
-                ProductDataController.closeConnection();
+
 
                 while (resultSet.next()) {
                     Product product = new Product(resultSet.getInt("productID"), resultSet.getString("productName"), resultSet.getFloat("productPrice"));
