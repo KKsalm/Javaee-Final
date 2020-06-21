@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class CreateProductController extends HttpServlet {
-    private static final String[] Message = {"Create Products Successfully", "Without Permission", "Empty Request", "Product Name Already Exist"};
+    private static final String[] Message = {"Create Successfully", "Without Permission", "Empty Request", "Product Name Already Exist"};
     private final Logger logger = LogManager.getLogger(CreateProductController.class);
 
     @Override

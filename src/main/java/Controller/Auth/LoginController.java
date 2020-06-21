@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
                         resp.addCookie(new Cookie("username", user.getUsername()));
                         resp.addCookie(new Cookie("password", user.getPassword()));
                         // Put User Object into Sessions
-                        session.setAttribute("User", user);
+                        session.setAttribute("CurrentUser", user);
                         session.setAttribute("Code", 0);
                         session.setAttribute("Message",loginMessage[0]);
                     } else {

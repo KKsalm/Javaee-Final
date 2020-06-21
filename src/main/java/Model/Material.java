@@ -13,6 +13,10 @@ public class Material {
         this.materialName = materialName;
     }
 
+    public Material(String materialName) {
+        this.materialName = materialName;
+    }
+
     public int getMaterialID() {
         return materialID;
     }
@@ -29,4 +33,11 @@ public class Material {
         this.materialName = materialName;
     }
 
+    @Override
+    public String toString() {
+        return "Material{" +
+                "materialID=" + materialID +
+                ", materialName='" + materialName + '\'' +
+                '}';
+    }
 }

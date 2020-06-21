@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class GetSingleUserController extends HttpServlet {
-    private static final String[] Message = {"Get User Info Successfully", "Without Permission"};
+    private static final String[] Message = {"Get Info Successfully", "Without Permission"};
     private final Logger logger = LogManager.getLogger(GetSingleUserController.class);
 
     @Override

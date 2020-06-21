@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class DeleteUserController extends HttpServlet {
-    private static final String[] Message = {"Delete User Successfully", "Without Permission"};
+    private static final String[] Message = {"Delete Successfully", "Without Permission"};
     private final Logger logger = LogManager.getLogger(DeleteUserController.class);
 
     @Override

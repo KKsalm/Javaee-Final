@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class GetAllUserController extends HttpServlet {
-    private static final String[] Message = {"Get Users Successfully", "Without Permission"};
+    private static final String[] Message = {"Get Info Successfully", "Without Permission"};
     private final Logger logger = LogManager.getLogger(GetAllUserController.class);
 
     @Override

@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class GetAllProductController extends HttpServlet {
-    private static final String[] Message = {"Get Data Success", "Without Permission"};
+    private static final String[] Message = {"Get Info Success", "Without Permission"};
     private final Logger logger = LogManager.getLogger(GetAllProductController.class);
 
     @Override

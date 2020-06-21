@@ -133,12 +133,11 @@ public class DatabaseOperation<T> {
         for (int i = 0; i < fields.length; i++) {
             fields[i].setAccessible(true);
             columns[i] = fields[i].get(object);
-            if (isPrimitive(fields[i].getType())) {//check primitive type(Point 5)
-                Class<?> boxed = boxPrimitiveClass(fields[i].getType());//box if primitive(Point 6)
+            if (isPrimitive(fields[i].getType())) {
+                Class<?> boxed = boxPrimitiveClass(fields[i].getType());
                 columns[i] = boxed.cast(columns[i]);
             }
         }
-        System.out.println(sql.toString());
         PreparedStatement preparedStatement = connection.prepareStatement(sql.toString());
         for (int i = 1; i < fields.length; i++) {
             preparedStatement.setObject(i, columns[i]);
