@@ -35,7 +35,7 @@
     <!--    User Part-->
     <servlet>
         <servlet-name>GetUserInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.GetSingleUserController</servlet-class>
+        <servlet-class>main.java.Controller.Api.User.GetSingleUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetUserInfo</servlet-name>
@@ -44,7 +44,7 @@
 
     <servlet>
         <servlet-name>GetUsersInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.GetAllUserController</servlet-class>
+        <servlet-class>main.java.Controller.Api.User.GetAllUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetUsersInfo</servlet-name>
@@ -53,7 +53,7 @@
 
     <servlet>
         <servlet-name>DeleteUser</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.DeleteUserController</servlet-class>
+        <servlet-class>main.java.Controller.Api.User.DeleteUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
@@ -62,7 +62,7 @@
 
     <servlet>
         <servlet-name>UpdateUser</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.UpdateUserController</servlet-class>
+        <servlet-class>main.java.Controller.Api.User.UpdateUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateUser</servlet-name>
@@ -72,7 +72,7 @@
     <!--    Product Part-->
     <servlet>
         <servlet-name>GetProductInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.GetSingleProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.GetSingleProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetProductInfo</servlet-name>
@@ -81,7 +81,7 @@
 
     <servlet>
         <servlet-name>GetProductsInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.GetAllProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.GetAllProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetProductsInfo</servlet-name>
@@ -90,7 +90,7 @@
 
     <servlet>
         <servlet-name>AddProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.CreateProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.CreateProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddProduct</servlet-name>
@@ -99,7 +99,7 @@
 
     <servlet>
         <servlet-name>DeleteProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.DeleteProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.DeleteProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteProduct</servlet-name>
@@ -108,7 +108,7 @@
 
     <servlet>
         <servlet-name>UpdateProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.UpdateProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.UpdateProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateProduct</servlet-name>
@@ -118,7 +118,7 @@
     <!--    Material Part-->
     <servlet>
         <servlet-name>GetMaterialInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.GetSingleMaterialController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Material.GetSingleMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetMaterialInfo</servlet-name>
@@ -127,7 +127,7 @@
 
     <servlet>
         <servlet-name>GetMaterialsInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.GetAllMaterialController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Material.GetAllMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetMaterialsInfo</servlet-name>
@@ -136,7 +136,7 @@
 
     <servlet>
         <servlet-name>CreateMaterial</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.CreateMaterialController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Material.CreateMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateMaterial</servlet-name>
@@ -145,7 +145,7 @@
 
     <servlet>
         <servlet-name>DeleteMaterial</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.DeleteMaterialController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Material.DeleteMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteMaterial</servlet-name>
@@ -154,7 +154,7 @@
 
     <servlet>
         <servlet-name>UpdateMaterial</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.UpdateMaterialController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Material.UpdateMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateMaterial</servlet-name>
@@ -164,7 +164,7 @@
     <!--    PurchaseRecord Part-->
     <servlet>
         <servlet-name>GetPurchaseInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetSinglePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetSinglePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetPurchaseInfo</servlet-name>
@@ -173,7 +173,7 @@
 
     <servlet>
         <servlet-name>GetPurchasesInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetAllPurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetAllPurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetPurchasesInfo</servlet-name>
@@ -182,7 +182,7 @@
 
     <servlet>
         <servlet-name>CreatePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.CreatePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.CreatePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreatePurchase</servlet-name>
@@ -191,7 +191,7 @@
 
     <servlet>
         <servlet-name>DeletePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.DeletePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.DeletePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeletePurchase</servlet-name>
@@ -200,7 +200,7 @@
 
     <servlet>
         <servlet-name>UpdatePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.UpdatePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.UpdatePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdatePurchase</servlet-name>

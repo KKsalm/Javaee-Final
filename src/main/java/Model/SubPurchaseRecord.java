@@ -59,4 +59,14 @@ public class SubPurchaseRecord {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "SubPurchaseRecord{" +
+                "recordID=" + recordID +
+                ", purchaseRecordID=" + purchaseRecordID +
+                ", materialID=" + materialID +
+                ", number=" + number +
+                ", price=" + price +
+                '}';
+    }
 }

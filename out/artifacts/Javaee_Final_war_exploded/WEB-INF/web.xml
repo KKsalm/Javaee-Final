@@ -72,7 +72,7 @@
     <!--    Product Part-->
     <servlet>
         <servlet-name>GetProductInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.GetSingleProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.GetSingleProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetProductInfo</servlet-name>
@@ -81,7 +81,7 @@
 
     <servlet>
         <servlet-name>GetProductsInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.GetAllProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.GetAllProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetProductsInfo</servlet-name>
@@ -90,7 +90,7 @@
 
     <servlet>
         <servlet-name>AddProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.CreateProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.CreateProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddProduct</servlet-name>
@@ -99,7 +99,7 @@
 
     <servlet>
         <servlet-name>DeleteProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.DeleteProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.DeleteProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteProduct</servlet-name>
@@ -108,7 +108,7 @@
 
     <servlet>
         <servlet-name>UpdateProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.UpdateProductController</servlet-class>
+        <servlet-class>main.java.Controller.Api.Product.UpdateProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateProduct</servlet-name>
@@ -164,7 +164,7 @@
     <!--    PurchaseRecord Part-->
     <servlet>
         <servlet-name>GetPurchaseInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetSinglePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetSinglePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetPurchaseInfo</servlet-name>
@@ -173,7 +173,7 @@
 
     <servlet>
         <servlet-name>GetPurchasesInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetAllPurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetAllPurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetPurchasesInfo</servlet-name>
@@ -182,7 +182,7 @@
 
     <servlet>
         <servlet-name>CreatePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.CreatePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.CreatePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreatePurchase</servlet-name>
@@ -191,7 +191,7 @@
 
     <servlet>
         <servlet-name>DeletePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.DeletePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.DeletePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeletePurchase</servlet-name>
@@ -200,7 +200,7 @@
 
     <servlet>
         <servlet-name>UpdatePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.UpdatePurchaseRecordController</servlet-class>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.UpdatePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdatePurchase</servlet-name>
