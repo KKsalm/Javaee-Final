@@ -161,5 +161,50 @@
         <url-pattern>/material/update</url-pattern>
     </servlet-mapping>
 
+    <!--    PurchaseRecord Part-->
+    <servlet>
+        <servlet-name>GetPurchaseInfo</servlet-name>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetSinglePurchaseRecordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetPurchaseInfo</servlet-name>
+        <url-pattern>/purchase</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetPurchasesInfo</servlet-name>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetAllPurchaseRecordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetPurchasesInfo</servlet-name>
+        <url-pattern>/purchase/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreatePurchase</servlet-name>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.CreatePurchaseRecordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreatePurchase</servlet-name>
+        <url-pattern>/purchase/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeletePurchase</servlet-name>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.DeletePurchaseRecordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletePurchase</servlet-name>
+        <url-pattern>/purchase/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdatePurchase</servlet-name>
+        <servlet-class>main.java.Controller.Api.PurchaseRecord.UpdatePurchaseRecordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdatePurchase</servlet-name>
+        <url-pattern>/purchase/update</url-pattern>
+    </servlet-mapping>
 
 </web-app>

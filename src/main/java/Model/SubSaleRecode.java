@@ -1,6 +1,6 @@
 package main.java.Model;
 
-public class ProductSaleRecode {
+public class SubSaleRecode {
 
     private int subSaleRecordID;    // 数据库自增字段
     private int saleRecordID;       // 订单记录ID

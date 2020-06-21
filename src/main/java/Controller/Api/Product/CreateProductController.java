@@ -22,7 +22,7 @@ public class CreateProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        User currentUser = (User) session.getAttribute("currentUser");
+        User currentUser = (User) session.getAttribute("CurrentUser");
 
         if (currentUser != null) {
             if ("staff".equals(currentUser.getPosition())) {

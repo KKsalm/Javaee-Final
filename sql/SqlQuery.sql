@@ -44,7 +44,7 @@ CREATE TABLE purchaseRecord
 (
     purchaseRecordID INT         NOT NULL AUTO_INCREMENT,
     totalPrice       FLOAT       NOT NULL,
-    date             VARCHAR(30) NOT NULL,
+    date             DATE NOT NULL,
     CONSTRAINT PURCHASERECORD_PK PRIMARY KEY (purchaseRecordID)
 );
 

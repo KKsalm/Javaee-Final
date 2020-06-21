@@ -1,18 +1,30 @@
 package main.java.Model;
 
+import java.util.Date;
+
 public class PurchaseRecord {
 
     private int purchaseRecordID;    // 数据库自增字段
     private float totalPrice;        // 总价格
-    private String date;             // 进货日期
+    private Date date;             // 进货日期
 
     public PurchaseRecord() {
     }
 
-    public PurchaseRecord(int purchaseRecordID, float totalPrice, String date) {
+    public PurchaseRecord(int purchaseRecordID, float totalPrice, Date date) {
         this.purchaseRecordID = purchaseRecordID;
         this.totalPrice = totalPrice;
         this.date = date;
+    }
+
+    public PurchaseRecord(float totalPrice, Date date) {
+        this.totalPrice = totalPrice;
+        this.date = date;
+    }
+
+    public PurchaseRecord(int purchaseRecordID, float totalPrice) {
+        this.purchaseRecordID = purchaseRecordID;
+        this.totalPrice = totalPrice;
     }
 
     public int getPurchaseRecordID() {
@@ -23,7 +35,7 @@ public class PurchaseRecord {
         return totalPrice;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -35,16 +47,16 @@ public class PurchaseRecord {
         this.totalPrice = totalPrice;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-}
-
-class dayPurchaseRecord {
-
-}
-
-class monthPurchaseRecord {
-
+    @Override
+    public String toString() {
+        return "PurchaseRecord{" +
+                "purchaseRecordID=" + purchaseRecordID +
+                ", totalPrice=" + totalPrice +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }
