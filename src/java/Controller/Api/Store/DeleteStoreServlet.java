@@ -34,27 +34,27 @@ public class DeleteStoreServlet extends HttpServlet {
         User currentUser = (User) session.getAttribute("CurrentUser");
 
         if (currentUser != null) {
-            try {
-                if ("boss".equals(currentUser.getPosition())) {
+            if ("boss".equals(currentUser.getPosition())) {
+                try {
                     StoreDataController storeDataController = new StoreDataController();
                     storeDataController.delete(Integer.parseInt(request.getParameter("storeID")));
 
                     request.setAttribute("Code", 0);
                     request.setAttribute("Message", Message[0]);
-                } else {
-                    request.setAttribute("Code", 1);
-                    request.setAttribute("Message", Message[1]);
+                } catch (SQLException sqlException) {
+                    logger.error(sqlException.getMessage());
+                } catch (NamingException namingException) {
+                    logger.error(namingException.getMessage());
                 }
-            } catch (SQLException sqlException) {
-                logger.error(sqlException.getMessage());
-            } catch (NamingException namingException) {
-                logger.error(namingException.getMessage());
-            }
 
+            } else {
+                request.setAttribute("Code", 1);
+                request.setAttribute("Message", Message[1]);
+            }
         } else {
             request.setAttribute("Code", 1);
             request.setAttribute("Message", Message[1]);
         }
-    }
 
+    }
 }

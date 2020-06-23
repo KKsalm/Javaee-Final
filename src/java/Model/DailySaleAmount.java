@@ -5,8 +5,9 @@ import java.util.Date;
 public class DailySaleAmount {
 
     private int dailySaleAmountID;       // 数据库自增字段
-    private Date date;                 // 日期
+    private Date date;                   // 日期
     private float amount;                // 销售额
+    private int storeID;                 // 店编号
 
     public DailySaleAmount() {
     }

@@ -28,6 +28,10 @@ public class Store {
         this.address = address;
     }
 
+    public Store(String address) {
+        this.address = address;
+    }
+
     public int getStoreID() {
         return storeID;
     }
@@ -58,6 +62,15 @@ public class Store {
 
     public void setMonthTurnover(float monthTurnover) {
         this.monthTurnover = monthTurnover;
+    }
+
+    @Override
+    public String toString() {
+        return "Store{"
+                + "storeID=" + storeID
+                + ", address=" + address
+                + ", dayTurnover=" + dayTurnover
+                + ", monthTurnover=" + monthTurnover + '}';
     }
 
 }

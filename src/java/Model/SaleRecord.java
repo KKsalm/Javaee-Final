@@ -6,7 +6,8 @@ public class SaleRecord {
 
     private int saleRecordID;        // 数据库自增字段
     private float totalPrice;        // 总价格
-    private Date date;             // 订单日期
+    private Date date;               // 订单日期
+    private int storeID;         // 店编号
 
     public SaleRecord() {
     }
@@ -20,10 +21,23 @@ public class SaleRecord {
         this.date = date;
     }
 
+    public SaleRecord(float totalPrice, Date date, int storeID) {
+        this.totalPrice = totalPrice;
+        this.date = date;
+        this.storeID = storeID;
+    }
+
     public SaleRecord(int saleRecordID, float totalPrice, Date date) {
         this.saleRecordID = saleRecordID;
         this.totalPrice = totalPrice;
         this.date = date;
+    }
+
+    public SaleRecord(int saleRecordID, float totalPrice, Date date, int storeID) {
+        this.saleRecordID = saleRecordID;
+        this.totalPrice = totalPrice;
+        this.date = date;
+        this.storeID = storeID;
     }
 
     public int getSaleRecordID() {
@@ -52,7 +66,11 @@ public class SaleRecord {
 
     @Override
     public String toString() {
-        return "SaleRecord{" + "saleRecordID=" + saleRecordID + ", totalPrice=" + totalPrice + ", date=" + date + '}';
+        return "SaleRecord{"
+                + "saleRecordID=" + saleRecordID
+                + ", totalPrice=" + totalPrice
+                + ", date=" + date
+                + ", storeID=" + storeID + '}';
     }
 
 }

@@ -262,4 +262,50 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
         <url-pattern>/saleRecord/update</url-pattern>
     </servlet-mapping>
     
+    <!--    Store Part-->
+    <servlet>
+        <servlet-name>AddStoreInfo</servlet-name>
+        <servlet-class>Controller.Api.Store.CreateStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddStoreInfo</servlet-name>
+        <url-pattern>/store/add</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetStoreInfo</servlet-name>
+        <servlet-class>Controller.Api.Store.GetSingleStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetStoreInfo</servlet-name>
+        <url-pattern>/store</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetStoresInfo</servlet-name>
+        <servlet-class>Controller.Api.Store.GetAllStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetStoresInfo</servlet-name>
+        <url-pattern>/store/all</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeleteStore</servlet-name>
+        <servlet-class>Controller.Api.Store.DeleteStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteStore</servlet-name>
+        <url-pattern>/store/delete</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateStore</servlet-name>
+        <servlet-class>Controller.Api.Store.UpdateStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateStore</servlet-name>
+        <url-pattern>/store/update</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

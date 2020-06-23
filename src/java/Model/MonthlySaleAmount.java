@@ -5,6 +5,7 @@ public class MonthlySaleAmount {
     private int monthlySaleAmountID;      // 数据库自增字段
     private String yearMonth;             // 日期
     private float amount;                 // 销售额
+    private int storeID;                  // 店编号
 
     public MonthlySaleAmount() {
     }

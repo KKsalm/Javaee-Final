@@ -32,14 +32,17 @@ public class CreateStoreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("CurrentUser");
 
         if (currentUser != null) {
             if ("boss".equals(currentUser.getPosition())) {
-                if (request.getParameter("address") != null && request.getParameter("dayTurnover") != null && request.getParameter("monthTurnover") != null) {
-                    Store store = new Store(request.getParameter("address"), Integer.parseInt(request.getParameter("dayTurnover")), Integer.parseInt(request.getParameter("monthTurnover")));
-
+//                if (request.getParameter("address") != null && request.getParameter("dayTurnover") != null && request.getParameter("monthTurnover") != null) {
+//                    Store store = new Store(request.getParameter("address"), Integer.parseInt(request.getParameter("dayTurnover")), Integer.parseInt(request.getParameter("monthTurnover")));
+                if (request.getParameter("address") != null) {
+                    Store store = new Store(request.getParameter("address"));
                     try {
                         StoreDataController storeDataController = new StoreDataController();
                         storeDataController.add(store);

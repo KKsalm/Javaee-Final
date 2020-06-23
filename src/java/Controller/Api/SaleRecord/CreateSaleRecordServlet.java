@@ -42,7 +42,7 @@ public class CreateSaleRecordServlet extends HttpServlet {
 
         if (currentUser != null) {
             if (request.getParameter("totalPrice") != null) {
-                SaleRecord saleRecord = new SaleRecord(Integer.parseInt(request.getParameter("totalPrice")), date);
+                SaleRecord saleRecord = new SaleRecord(Integer.parseInt(request.getParameter("totalPrice")), date, Integer.parseInt(request.getParameter("storeID")));
 
                 try {
                     SaleRecordDataController saleRecordDataController = new SaleRecordDataController();
