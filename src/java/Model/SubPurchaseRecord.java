@@ -1,6 +1,6 @@
 package Model;
 
-public class MaterialPurchaseRecord {
+public class SubPurchaseRecord {
 
     private int recordID;               // 数据库自增字段
     private int purchaseRecordID;       // 进货记录ID
@@ -8,10 +8,10 @@ public class MaterialPurchaseRecord {
     private int number;                 // 数量
     private float price;                // 单价
 
-    public MaterialPurchaseRecord() {
+    public SubPurchaseRecord() {
     }
 
-    public MaterialPurchaseRecord(int recordID, int purchaseRecordID, int materialID, int number, float price) {
+    public SubPurchaseRecord(int recordID, int purchaseRecordID, int materialID, int number, float price) {
         this.recordID = recordID;
         this.purchaseRecordID = purchaseRecordID;
         this.materialID = materialID;
@@ -59,4 +59,14 @@ public class MaterialPurchaseRecord {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "SubPurchaseRecord{" +
+                "recordID=" + recordID +
+                ", purchaseRecordID=" + purchaseRecordID +
+                ", materialID=" + materialID +
+                ", number=" + number +
+                ", price=" + price +
+                '}';
+    }
 }

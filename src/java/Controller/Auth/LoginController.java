@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LoginController extends HttpServlet {
+
     private final String[] loginMessage = {"Login Successfully", "Empty Request", "Error Password or Username", "Username Does not Exist"};
     private final Logger logger = LogManager.getLogger(LoginController.class);
 
@@ -46,28 +47,28 @@ public class LoginController extends HttpServlet {
                 UserDataController userDataController = new UserDataController();
                 String queryResult = userDataController.getPassword(user);
 
-                if (queryResult != null ) {
+                if (queryResult != null) {
                     if (user.getPassword().equals(queryResult)) {
                         resp.addCookie(new Cookie("username", user.getUsername()));
                         resp.addCookie(new Cookie("password", user.getPassword()));
                         // Put User Object into Sessions
                         session.setAttribute("User", user);
                         session.setAttribute("Code", 0);
-                        session.setAttribute("Message",loginMessage[0]);
+                        session.setAttribute("Message", loginMessage[0]);
                     } else {
                         session.setAttribute("Code", 3);
-                        session.setAttribute("Message",loginMessage[3]);
+                        session.setAttribute("Message", loginMessage[3]);
                     }
                 } else {
                     session.setAttribute("Code", 4);
-                    session.setAttribute("Message",loginMessage[4]);
+                    session.setAttribute("Message", loginMessage[4]);
                     logger.error(loginMessage[4]);
                 }
             } catch (SQLException sqlException) {
                 if (sqlException.getErrorCode() == 1054) {
                     // User Does not Exist
                     session.setAttribute("Code", 4);
-                    session.setAttribute("Message",loginMessage[4]);
+                    session.setAttribute("Message", loginMessage[4]);
                     logger.error(loginMessage[4]);
 
                 }
@@ -79,7 +80,7 @@ public class LoginController extends HttpServlet {
             }
         } else {
             session.setAttribute("Code", 1);
-            session.setAttribute("Message",loginMessage[1]);
+            session.setAttribute("Message", loginMessage[1]);
             resp.sendRedirect("/login.jsp");
         }
     }

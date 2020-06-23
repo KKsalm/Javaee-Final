@@ -17,14 +17,15 @@ public class Store {
         this.monthTurnover = monthTurnover;
     }
 
-    public Store(int storeID) {
-        this.storeID = storeID;
-    }
-
     public Store(String address, float dayTurnover, float monthTurnover) {
         this.address = address;
         this.dayTurnover = dayTurnover;
         this.monthTurnover = monthTurnover;
+    }
+
+    public Store(int storeID, String address) {
+        this.storeID = storeID;
+        this.address = address;
     }
 
     public int getStoreID() {

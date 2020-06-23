@@ -1,17 +1,11 @@
 package Model;
 
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class User {
-    protected int userId;               // 数据库自增字段
-    protected int workNumber;           // 员工工号
+    protected int userID;               // 数据库自增字段
+    protected Integer workNumber;           // 员工工号
     protected String name;              // 员工姓名
     protected String position;          // 员工职位
-    protected int storeID;              // 店编号
+    protected Integer storeID;              // 店编号
     protected float monthWorkTime;      // 员工工作时间
     protected float monthSalary;        // 员工薪水
     protected String username;
@@ -20,8 +14,21 @@ public class User {
 
     public User() { }
 
-    public User(int userId, int workNumber, String name, String position, int storeID, float monthWorkTime, float monthSalary) {
-        this.userId = userId;
+
+    public User(int userID, Integer workNumber, String name, String position, Integer storeID, float monthWorkTime, float monthSalary, String username, String password) {
+        this.userID = userID;
+        this.workNumber = workNumber;
+        this.name = name;
+        this.position = position;
+        this.storeID = storeID;
+        this.monthWorkTime = monthWorkTime;
+        this.monthSalary = monthSalary;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(int userID, Integer workNumber, String name, String position, Integer storeID, float monthWorkTime, float monthSalary) {
+        this.userID = userID;
         this.workNumber = workNumber;
         this.name = name;
         this.position = position;
@@ -34,14 +41,14 @@ public class User {
         this.username = username;
         this.password = password;
     }
-    
+
     // Get Part
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public int getWorkNumber() {
+    public Integer getWorkNumber() {
         return workNumber;
     }
 
@@ -53,7 +60,7 @@ public class User {
         return position;
     }
 
-    public int getStoreID() {
+    public Integer getStoreID() {
         return storeID;
     }
 
@@ -75,11 +82,11 @@ public class User {
 
     // Set Part
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userId) {
+        this.userID = userId;
     }
 
-    public void setWorkNumber(int workNumber) {
+    public void setWorkNumber(Integer workNumber) {
         this.workNumber = workNumber;
     }
 
@@ -91,7 +98,7 @@ public class User {
         this.position = position;
     }
 
-    public void setStoreID(int storeID) {
+    public void setStoreID(Integer storeID) {
         this.storeID = storeID;
     }
 
@@ -111,7 +118,19 @@ public class User {
         this.password = password;
     }
 
-    // Other Functions
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userID +
+                ", workNumber=" + workNumber +
+                ", name='" + name + '\'' +
+                ", position='" + position + '\'' +
+                ", storeID=" + storeID +
+                ", monthWorkTime=" + monthWorkTime +
+                ", monthSalary=" + monthSalary +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
 

@@ -1,25 +1,32 @@
 package Database;
 
-
 import Model.Store;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import javax.naming.NamingException;
 
-public class StoreDataController {
+public class StoreDataController extends DatabaseOperation<Store> {
 
-    private static Connection connection = null;
     private static Statement statement = null;
 
-    public StoreDataController() throws SQLException, ClassNotFoundException {
-        Class.forName(DatabaseController.getJdbcDRIVER());
-        connection = DatabaseController.getConnection();
-        statement = connection.createStatement();
+    public StoreDataController() throws SQLException, NamingException {
+        super();
+        statement = super.getConnection().createStatement();
     }
 
-    public static void closeConnection() throws SQLException {
-        connection.close();
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+    }
+
+    public static ResultSet getStore() throws SQLException {
+        assert statement != null;
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM store;");
+        return resultSet;
     }
 
     public static void createStore(Store store) throws SQLException {
@@ -33,4 +40,28 @@ public class StoreDataController {
         statement.executeUpdate("DELETE FROM store WHERE storeID = '" + store.getStoreID() + "';");
     }
 
+    @Override
+    public Store queryByID(int id) throws SQLException, IllegalAccessException, InstantiationException {
+        return super.queryByID(id);
+    }
+
+    @Override
+    public List<Store> queryAll() throws IllegalAccessException, InstantiationException, SQLException {
+        return super.queryAll();
+    }
+
+    @Override
+    public void add(Store store) throws SQLException, IllegalAccessException {
+        super.add(store);
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+        super.delete(id);
+    }
+
+    @Override
+    public void update(Store store) throws SQLException, IllegalAccessException {
+        super.update(store);
+    }
 }

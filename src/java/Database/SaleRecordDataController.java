@@ -2,44 +2,54 @@ package Database;
 
 import Model.SaleRecord;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import javax.naming.NamingException;
 
-public class SaleRecordDataController {
+public class SaleRecordDataController extends DatabaseOperation<SaleRecord> {
 
-    private static Connection connection = null;
     private static Statement statement = null;
 
-    public SaleRecordDataController() throws SQLException, ClassNotFoundException {
-        Class.forName(DatabaseController.getJdbcDRIVER());
-        connection = DatabaseController.getConnection();
-        statement = connection.createStatement();
+    public SaleRecordDataController() throws SQLException, NamingException {
+        super();
+        statement = super.getConnection().createStatement();
     }
 
-    public static void closeConnection() throws SQLException {
-        connection.close();
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
     }
 
     public static void createSaleRecord(SaleRecord saleRecord) throws SQLException {
 
-        statement.executeUpdate("INSERT INTO saleRecord(totalPrice, date)\n"
+        statement.executeUpdate("INSERT INTO saleRecord(totalPrice, date) "
                 + " VALUE ( '" + saleRecord.getTotalPrice() + "', '" + saleRecord.getDate() + "' );");
 
     }
 
     public static ResultSet getSaleRecord() throws SQLException {
-
-        ResultSet resultSet = statement.executeQuery("SELECT totalPrice, date FROM saleRecord");
+        assert statement != null;
+        ResultSet resultSet = statement.executeQuery("SELECT saleRecordID, totalPrice, date FROM saleRecord");
         return resultSet;
 
     }
 
+    @Override
+    public SaleRecord queryByID(int id) throws SQLException, IllegalAccessException, InstantiationException {
+        return super.queryByID(id);
+    }
+
+    @Override
+    public List<SaleRecord> queryAll() throws IllegalAccessException, InstantiationException, SQLException {
+        return super.queryAll();
+    }
+
     public static void modifySaleRecord(SaleRecord saleRecord) throws SQLException {
 
-        statement.executeUpdate("UPDATE saleRecord SET totalPrice=" + saleRecord.getTotalPrice()
-                + "date = " + saleRecord.getDate() + "WHERE saleRecordID = '" + saleRecord.getSaleRecordID() + "';");
+        statement.executeUpdate("UPDATE saleRecord SET totalPrice='" + saleRecord.getTotalPrice()
+                + "'date = '" + saleRecord.getDate() + "'WHERE saleRecordID = '" + saleRecord.getSaleRecordID() + "';");
 
     }
 
@@ -47,4 +57,20 @@ public class SaleRecordDataController {
 
         statement.executeUpdate("DELETE FROM saleRecord " + "WHERE saleRecordID = '" + saleRecord.getSaleRecordID() + "';");
     }
+
+    @Override
+    public void add(SaleRecord record) throws SQLException, IllegalAccessException {
+        super.add(record);
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+        super.delete(id);
+    }
+
+    @Override
+    public void update(SaleRecord record) throws SQLException, IllegalAccessException {
+        super.update(record);
+    }
+
 }

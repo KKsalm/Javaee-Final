@@ -1,10 +1,12 @@
 package Model;
 
+import java.util.Date;
+
 public class SaleRecord {
 
     private int saleRecordID;        // 数据库自增字段
     private float totalPrice;        // 总价格
-    private String date;             // 订单日期
+    private Date date;             // 订单日期
 
     public SaleRecord() {
     }
@@ -13,12 +15,12 @@ public class SaleRecord {
         this.saleRecordID = saleRecordID;
     }
 
-    public SaleRecord(float totalPrice, String date) {
+    public SaleRecord(float totalPrice, Date date) {
         this.totalPrice = totalPrice;
         this.date = date;
     }
 
-    public SaleRecord(int saleRecordID, float totalPrice, String date) {
+    public SaleRecord(int saleRecordID, float totalPrice, Date date) {
         this.saleRecordID = saleRecordID;
         this.totalPrice = totalPrice;
         this.date = date;
@@ -32,7 +34,7 @@ public class SaleRecord {
         return totalPrice;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -44,8 +46,13 @@ public class SaleRecord {
         this.totalPrice = totalPrice;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "SaleRecord{" + "saleRecordID=" + saleRecordID + ", totalPrice=" + totalPrice + ", date=" + date + '}';
     }
 
 }

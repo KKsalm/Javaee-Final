@@ -2,26 +2,27 @@ package Database;
 
 import Model.Product;
 
-import java.sql.Connection;
+import javax.naming.NamingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
-public class ProductDataController {
-    private static Connection connection = null;
+public class ProductDataController extends DatabaseOperation<Product>{
     private static Statement statement = null;
 
-    public ProductDataController() throws SQLException, ClassNotFoundException {
-        Class.forName(DatabaseController.getJdbcDRIVER());
-        connection = DatabaseController.getConnection();
-        statement = connection.createStatement();
+    public ProductDataController() throws SQLException, NamingException {
+        super();
+        statement = super.getConnection().createStatement();
     }
 
-    public static void closeConnection() throws SQLException {
-        connection.close();
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
     }
 
     public static ResultSet getProducts() throws SQLException {
+        assert statement != null;
         ResultSet resultSet = statement.executeQuery("SELECT productID, productName, productPrice FROM product;");
         return resultSet;
     }
@@ -33,5 +34,30 @@ public class ProductDataController {
 
     public static void deleteProduct(Product product) throws SQLException {
         statement.executeUpdate("DELETE FROM product WHERE productID = " + product.getProductID() + ";");
+    }
+
+    @Override
+    public Product queryByID(int id) throws SQLException, IllegalAccessException, InstantiationException {
+        return super.queryByID(id);
+    }
+
+    @Override
+    public List<Product> queryAll() throws IllegalAccessException, InstantiationException, SQLException {
+        return super.queryAll();
+    }
+
+    @Override
+    public void add(Product object) throws SQLException, IllegalAccessException {
+        super.add(object);
+    }
+
+    @Override
+    public void delete(int id) throws SQLException {
+        super.delete(id);
+    }
+
+    @Override
+    public void update(Product object) throws SQLException, IllegalAccessException {
+        super.update(object);
     }
 }

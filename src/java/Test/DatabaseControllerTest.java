@@ -1,52 +1,40 @@
-package Database;
+package Test;
 
+import Database.DatabaseController;
+import Model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
+import java.lang.reflect.Field;
 import java.sql.*;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-
-public class DatabaseController {
+public class DatabaseControllerTest {
     private static final String jdbcDRIVER = "com.mysql.jdbc.Driver";
     private static final String dbURLParams = "?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
     private static final String dbURL = "jdbc:mysql://localhost:3306";
     private static final String dbName = "yhtSaleSystem";
 
-    private static final String dbUsername = "root";
-    private static final String dbPassword = "root";
+    static final String dbUsername = "root";
+    static final String dbPassword = "root";
 
-    private static final Logger logger = LogManager.getLogger(DatabaseController.class);;
+    private static int databaseInitStatue = 0;
+    private static Logger logger = LogManager.getLogger(DatabaseController.class);
+    ;
     // Configurator.setLevel(databaseConnection.class.getName(), Level.DEBUG);
 
-    public DatabaseController()  {
+    private static Connection connection = null;
+    private static Statement statement = null;
 
-    }
+//    DatabaseController() {
+//        if (databaseInitStatue == 0) {
+//            initDatabase();
+//        }
+//    }
 
-    public static void initDatabase() throws SQLException, ClassNotFoundException {
-
-        Class.forName(jdbcDRIVER);
-
-        logger.info("Connecting to Database ...");
-        Connection connection = DriverManager.getConnection(dbURL + dbURLParams, dbUsername, dbPassword);
-
-        logger.info("Create Statement Object ...");
-        Statement statement = connection.createStatement();
-
-        if (statement != null) {
-            createDatabase(connection, statement);
-        }
-
+    public static void main(String[] args) {
 //        try {
-//            Class.forName(jdbcDRIVER);
-//
-//            logger.info("Connecting to Database ...");
-//            Connection connection = DriverManager.getConnection(dbURL + dbURLParams, dbUsername, dbPassword);
-//
-//            logger.info("Create Statement Object ...");
-//            Statement statement = connection.createStatement();
-//
-//            if (connection != null && statement != null) {
-//                createDatabase(connection, statement);
-//            }
+//            initDatabase();
 //        } catch (SQLException sqlException) {
 //            if (sqlException.getErrorCode() == 1007) {
 //                // Database already exist
@@ -58,6 +46,40 @@ public class DatabaseController {
 //            // if "com.mysql.cj.jdbc.Driver" does not exist
 //            logger.error(classNotFoundException.getMessage());
 //        }
+
+        try {
+            User user = new User();
+            user.setUsername("test");
+            user.setPassword("test");
+
+            connection = DriverManager.getConnection(dbURL + "/" + dbName + dbURLParams, dbUsername, dbPassword);
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT password FROM user WHERE username = 'test';");
+
+
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("password"));
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+
+    }
+
+
+    public static void initDatabase() throws SQLException, ClassNotFoundException {
+        Class.forName(jdbcDRIVER);
+
+        logger.info("Connecting to Database ...");
+        connection = DriverManager.getConnection(dbURL + dbURLParams, dbUsername, dbPassword);
+
+        logger.info("Create Statement Object ...");
+        statement = connection.createStatement();
+
+        if (connection != null && statement != null) {
+            createDatabase(connection, statement);
+        }
 
     }
 
@@ -202,17 +224,30 @@ public class DatabaseController {
         logger.info("Create Monthly Sale Amount Successfully !");
 
         connection.close();
+        databaseInitStatue = 1;
     }
 
-    public static String getJdbcDRIVER() {
-        return jdbcDRIVER;
+    public static int registerUser(User user) throws SQLException {
+        connection = DriverManager.getConnection(dbURL + "/" + dbName + dbURLParams, dbUsername, dbPassword);
+        statement = connection.createStatement();
+
+        int result = statement.executeUpdate("INSERT INTO user(name, username, password)\n" +
+                " VALUE ( '" + user.getName() + "', '" + user.getUsername() + "', '" + user.getPassword() + "' );");
+
+        return 0;
     }
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        Class.forName(jdbcDRIVER);
-        return DriverManager.getConnection(dbURL + "/" + dbName + dbURLParams, dbUsername, dbPassword);
-    }
+    public static String getPassword(String username) throws SQLException {
+        connection = DriverManager.getConnection(dbURL + "/" + dbName + dbURLParams, dbUsername, dbPassword);
+        statement = connection.createStatement();
 
+        ResultSet resultSet = statement.executeQuery("SELECT password FROM user\n" +
+                "WHERE username = " + username + ";");
+
+        connection.close();
+        resultSet.next();
+        return resultSet.getString("password");
+    }
 
 
 }
