@@ -31,7 +31,7 @@ public class GetDailySaleAmountServlet extends HttpServlet {
         User currentUser = (User) request.getAttribute("CurrentUser");
 
         if (currentUser != null) {
-            if ("boss".equals(currentUser.getPosition())) {
+            if ("boss".equals(currentUser.getPosition()) || "manager".equals(currentUser.getPosition())) {
                 try {
                     List<DailySaleAmount> dailySaleAmounts = null;
 

@@ -35,7 +35,7 @@ public class CreateMonthlySaleAmountServlet extends HttpServlet {
         User currentUser = (User) session.getAttribute("CurrentUser");
 
         if (currentUser != null) {
-            if ("boss".equals(currentUser.getPosition())) {
+            if ("boss".equals(currentUser.getPosition()) || "manager".equals(currentUser.getPosition())) {
                 if (request.getParameter("storeID") != null) {
                     try {
                         MonthlySaleAmountDataController monthlySaleAmountDataController = new MonthlySaleAmountDataController();
