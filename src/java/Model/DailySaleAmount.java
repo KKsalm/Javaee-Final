@@ -12,10 +12,24 @@ public class DailySaleAmount {
     public DailySaleAmount() {
     }
 
+    public DailySaleAmount(Date date, float amount, int storeID) {
+        this.date = date;
+        this.amount = amount;
+        this.storeID = storeID;
+    }
+
     public DailySaleAmount(int dailySaleAmountID, Date date, float amount) {
         this.dailySaleAmountID = dailySaleAmountID;
         this.date = date;
         this.amount = amount;
+    }
+
+    public DailySaleAmount(int storeID) {
+        this.storeID = storeID;
+    }
+
+    public int getStoreID() {
+        return storeID;
     }
 
     public int getDailySaleAmountID() {
@@ -40,6 +54,15 @@ public class DailySaleAmount {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "DailySaleAmount{"
+                + "dailySaleAmountID=" + dailySaleAmountID
+                + ", date=" + date
+                + ", amount=" + amount
+                + ", storeID=" + storeID + '}';
     }
 
 }

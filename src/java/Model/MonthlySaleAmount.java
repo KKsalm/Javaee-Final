@@ -16,6 +16,14 @@ public class MonthlySaleAmount {
         this.amount = amount;
     }
 
+    public MonthlySaleAmount(int storeID) {
+        this.storeID = storeID;
+    }
+
+    public int getStoreID() {
+        return storeID;
+    }
+
     public int getMonthlySaleAmountID() {
         return monthlySaleAmountID;
     }
@@ -38,6 +46,15 @@ public class MonthlySaleAmount {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "MonthlySaleAmount{"
+                + "monthlySaleAmountID=" + monthlySaleAmountID
+                + ", yearMonth=" + yearMonth
+                + ", amount=" + amount
+                + ", storeID=" + storeID + '}';
     }
 
 }

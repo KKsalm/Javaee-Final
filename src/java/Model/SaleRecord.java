@@ -52,6 +52,10 @@ public class SaleRecord {
         return date;
     }
 
+    public int getStoreID() {
+        return storeID;
+    }
+
     public void setSaleRecordID(int saleRecordID) {
         this.saleRecordID = saleRecordID;
     }

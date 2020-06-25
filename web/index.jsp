@@ -16,22 +16,31 @@
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
+            int storeID = 2;
             try {
                 //new DBCP....
                 Context ctx = new InitialContext();
                 //通过JNDI查找DataSource
                 DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/yhtSaleSystem");
                 conn = ds.getConnection();
-                pstmt = conn.prepareStatement("select * from user");
-                rs = pstmt.executeQuery();
-                if (rs.next()) {
-                    do {
-                        out.print(rs.getString("username"));
-                    } while (rs.next());
+                pstmt = conn.prepareStatement("INSERT INTO dailysaleamount(date,amount,storeID)"
+                        + "SELECT date, sum(totalPrice)amount, storeID "
+                        + "FROM salerecord WHERE storeID = '" + storeID
+                        + "'group by year(date), month(date), day(date);");
 
-                } else {
-                    out.print("No results from query");
-                }
+                pstmt.executeUpdate();
+                out.print("No results from query");
+//                if (rs.next()) {
+//                    do {
+//                        out.print(rs.getString("yy") + "-");
+//                        out.print(rs.getString("mm") + "-");
+//                        out.print(rs.getString("dd") + "-");
+//                        out.print(rs.getString("销售额") + "\n");
+//                    } while (rs.next());
+//
+//                } else {
+//                    out.print("No results from query");
+//                }
 
             } catch (Exception e) {
                 e.printStackTrace();

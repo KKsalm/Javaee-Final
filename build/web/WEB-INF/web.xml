@@ -308,4 +308,42 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
         <url-pattern>/store/update</url-pattern>
     </servlet-mapping>
     
+    <!--    SaleAmount Part-->
+    <servlet>
+        <servlet-name>CreateDailySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.CreateDailySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateDailySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/add/daily</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CreateMonthlySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.CreateMonthlySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateMonthlySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/add/monthly</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetDailySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.GetDailySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetDailySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/daily</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetMonthlySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.GetMonthlySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetMonthlySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/monthly</url-pattern>
+    </servlet-mapping>
+    
+    
 </web-app>
