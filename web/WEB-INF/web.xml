@@ -3,94 +3,84 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    
-<!--    <servlet>-->
-<!--        <servlet-name></servlet-name>-->
-<!--        <servlet-class></servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name></servlet-name>-->
-<!--        <url-pattern></url-pattern>-->
-<!--    </servlet-mapping>-->
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorPage/404.jsp</location>
+    </error-page>
 
     <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>main.java.Controller.Auth.RegisterController</servlet-class>
+        <servlet-name>InitDBServlet</servlet-name>
+        <servlet-class>Controller.InitDBServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Register</servlet-name>
+        <servlet-name>InitDBServlet</servlet-name>
+        <url-pattern>/initDB</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>Controller.Auth.RegisterController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>main.java.Controller.Auth.LoginController</servlet-class>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>Controller.Auth.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
+        <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>Controller.Auth.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
 
     <!--    User Part-->
-    <servlet>
-        <servlet-name>GetUserInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.GetSingleUserServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetUserInfo</servlet-name>
-        <url-pattern>/user</url-pattern>
-    </servlet-mapping>
+
 
     <servlet>
-        <servlet-name>GetUsersInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.GetAllUserServlet</servlet-class>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>Controller.Api.User.DeleteUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>GetUsersInfo</servlet-name>
-        <url-pattern>/user/all</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DeleteUser</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.DeleteUserServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DeleteUser</servlet-name>
+        <servlet-name>DeleteUserServlet</servlet-name>
         <url-pattern>/user/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>UpdateUser</servlet-name>
-        <servlet-class>main.java.Controller.Api.User.UpdateUserServlet</servlet-class>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <servlet-class>Controller.Api.User.UpdateUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UpdateUser</servlet-name>
+        <servlet-name>UpdateUserServlet</servlet-name>
         <url-pattern>/user/update</url-pattern>
     </servlet-mapping>
 
-    <!--    Product Part-->
     <servlet>
-        <servlet-name>GetProductInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.GetSingleProductServlet</servlet-class>
+        <servlet-name>UpdateUserInfo</servlet-name>
+        <servlet-class>Controller.Api.User.UpdateUserInfoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>GetProductInfo</servlet-name>
-        <url-pattern>/product</url-pattern>
+        <servlet-name>UpdateUserInfo</servlet-name>
+        <url-pattern>/user/updateinfo</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>GetProductsInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.GetAllProductServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetProductsInfo</servlet-name>
-        <url-pattern>/product/all</url-pattern>
-    </servlet-mapping>
+    <!--    Product Part-->
 
     <servlet>
         <servlet-name>AddProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.CreateProductServlet</servlet-class>
+        <servlet-class>Controller.Api.Product.CreateProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddProduct</servlet-name>
@@ -99,7 +89,7 @@
 
     <servlet>
         <servlet-name>DeleteProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.DeleteProductServlet</servlet-class>
+        <servlet-class>Controller.Api.Product.DeleteProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteProduct</servlet-name>
@@ -108,7 +98,7 @@
 
     <servlet>
         <servlet-name>UpdateProduct</servlet-name>
-        <servlet-class>main.java.Controller.Api.Product.UpdateProductServlet</servlet-class>
+        <servlet-class>Controller.Api.Product.UpdateProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateProduct</servlet-name>
@@ -116,27 +106,11 @@
     </servlet-mapping>
 
     <!--    Material Part-->
-    <servlet>
-        <servlet-name>GetMaterialInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.GetSingleMaterialServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetMaterialInfo</servlet-name>
-        <url-pattern>/material</url-pattern>
-    </servlet-mapping>
 
-    <servlet>
-        <servlet-name>GetMaterialsInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.GetAllMaterialServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetMaterialsInfo</servlet-name>
-        <url-pattern>/material/all</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>CreateMaterial</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.CreateMaterialServlet</servlet-class>
+        <servlet-class>Controller.Api.Material.CreateMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateMaterial</servlet-name>
@@ -145,7 +119,7 @@
 
     <servlet>
         <servlet-name>DeleteMaterial</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.DeleteMaterialServlet</servlet-class>
+        <servlet-class>Controller.Api.Material.DeleteMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteMaterial</servlet-name>
@@ -154,7 +128,7 @@
 
     <servlet>
         <servlet-name>UpdateMaterial</servlet-name>
-        <servlet-class>main.java.Controller.Api.Material.UpdateMaterialServlet</servlet-class>
+        <servlet-class>Controller.Api.Material.UpdateMaterialServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateMaterial</servlet-name>
@@ -162,27 +136,11 @@
     </servlet-mapping>
 
     <!--    PurchaseRecord Part-->
-    <servlet>
-        <servlet-name>GetPurchaseInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetSinglePurchaseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetPurchaseInfo</servlet-name>
-        <url-pattern>/purchase</url-pattern>
-    </servlet-mapping>
 
-    <servlet>
-        <servlet-name>GetPurchasesInfo</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.GetAllPurchaseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetPurchasesInfo</servlet-name>
-        <url-pattern>/purchase/all</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>CreatePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.CreatePurchaseServlet</servlet-class>
+        <servlet-class>Controller.Api.PurchaseRecord.CreatePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreatePurchase</servlet-name>
@@ -191,7 +149,7 @@
 
     <servlet>
         <servlet-name>DeletePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.DeletePurchaseServlet</servlet-class>
+        <servlet-class>Controller.Api.PurchaseRecord.DeletePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeletePurchase</servlet-name>
@@ -200,11 +158,107 @@
 
     <servlet>
         <servlet-name>UpdatePurchase</servlet-name>
-        <servlet-class>main.java.Controller.Api.PurchaseRecord.UpdatePurchaseServlet</servlet-class>
+        <servlet-class>Controller.Api.PurchaseRecord.UpdatePurchaseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdatePurchase</servlet-name>
         <url-pattern>/purchase/update</url-pattern>
+    </servlet-mapping>
+
+
+    <!--    SaleRecord Part-->
+    <servlet>
+        <servlet-name>AddSaleRecordInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleRecord.CreateSaleRecordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddSaleRecordInfo</servlet-name>
+        <url-pattern>/saleRecord/add</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DeleteSaleRecord</servlet-name>
+        <servlet-class>Controller.Api.SaleRecord.DeleteSaleRecordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteSaleRecord</servlet-name>
+        <url-pattern>/saleRecord/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateSaleRecord</servlet-name>
+        <servlet-class>Controller.Api.SaleRecord.UpdateSaleRecordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateSaleRecord</servlet-name>
+        <url-pattern>/saleRecord/update</url-pattern>
+    </servlet-mapping>
+
+    <!--    Store Part-->
+    <servlet>
+        <servlet-name>AddStoreInfo</servlet-name>
+        <servlet-class>Controller.Api.Store.CreateStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddStoreInfo</servlet-name>
+        <url-pattern>/store/add</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DeleteStore</servlet-name>
+        <servlet-class>Controller.Api.Store.DeleteStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteStore</servlet-name>
+        <url-pattern>/store/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateStore</servlet-name>
+        <servlet-class>Controller.Api.Store.UpdateStoreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateStore</servlet-name>
+        <url-pattern>/store/update</url-pattern>
+    </servlet-mapping>
+
+    <!--    SaleAmount Part-->
+    <servlet>
+        <servlet-name>CreateDailySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.CreateDailySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateDailySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/add/daily</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateMonthlySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.CreateMonthlySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateMonthlySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/add/monthly</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetDailySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.GetDailySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetDailySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/daily</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetMonthlySaleAmountInfo</servlet-name>
+        <servlet-class>Controller.Api.SaleAmount.GetMonthlySaleAmountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetMonthlySaleAmountInfo</servlet-name>
+        <url-pattern>/saleAmount/monthly</url-pattern>
     </servlet-mapping>
 
 </web-app>

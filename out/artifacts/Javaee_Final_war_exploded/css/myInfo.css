@@ -1,0 +1,18 @@
+.myInfo-list {
+    text-decoration: none;
+    list-style: none;
+    font-size: 16px;
+}
+
+.myInfo-list>.myInfo-item {
+    padding: 8px 0;
+}
+
+.myInfo-item>.label,
+span {
+    color: #000000;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 0;
+    color: slategray;
+}
